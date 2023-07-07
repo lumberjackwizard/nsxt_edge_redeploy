@@ -6,10 +6,12 @@ Recommended: Power off the target NSX-T Edge VM prior to running the below scrip
 
 
 What you'll need:
-1 - NSX manager IP or FQDN
-2 - NSX manager username and password
-3 - UUID of the target NSX-T Edge VM
-4 - The cli and root password for the NSX-T Edge VM
+1: NSX manager IP or FQDN
+2: NSX manager username and password
+3: UUID of the target NSX-T Edge VM and 
+4: The cli and root password for the NSX-T Edge VM
+
+You can easily get the UUID of the target NSX-T Edge VM in the NSX-T UI by going to System -> Fabric -> Nodes and then selecting Edge Transport Nodes. The 'ID' column contains the UUID for each Edge VM; just copy it from here, and you can paste it into the script when prompted. 
 
 Once you kick the script off (pwsh nsx_edge_redeploy.ps1), you'll be prompted for all of the above. For the cli and root passwords, the passwords are echo'ed back to the screen by intent, as I wanted to remove the possibility of accidental misconfiguration. 
 
