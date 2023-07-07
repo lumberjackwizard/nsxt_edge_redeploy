@@ -1,8 +1,10 @@
 #Created on Powershell 7.3
 
-#First we prompt for the nsx manager IP/fqdn and credentials. This populates the $Url variable. 
-$Cred = Get-Credential
-$Url = "https://nsxt-mgr-a.myhomevlab.com/api/v1/transport-nodes/df7ccc66-531b-4cd5-a1db-a0f87f6bfa95"
+#First we prompt for the nsx manager IP/fqdn and credentials. This populates the $Url variable.
+$nsxmgr = Read-Host "Enter NSX Manager IP or FQDN" 
+$Cred = Get-Credential -Title "Enter NSX Manager Username and Password" -Message " "
+$edge_uuid = Read-Host "Enter target Edge node UUID"
+$Url = 'https://'+$nsxmgr+'/api/v1/transport-nodes/'+$edge_uuid
 
 # invoke-restmethod takes the data from above and gathers the information on the target edge node that will be replaced
 $replace_edge = Invoke-RestMethod -Uri $Url -Credential $Cred -SkipCertificateCheck -Authentication Basic
@@ -10,8 +12,11 @@ $replace_edge = Invoke-RestMethod -Uri $Url -Credential $Cred -SkipCertificateCh
 
 #the original edge node's cli password and root password are not gathered as part of the previous request, 
 #and must be configured for the replacement edge
-$replace_edge.node_deployment_info.deployment_config.node_user_settings | Add-Member -Type NoteProperty -Name 'root_password' -Value "VMware1!VMware1!"
-$replace_edge.node_deployment_info.deployment_config.node_user_settings | Add-Member -Type NoteProperty -Name 'cli_password' -Value "VMware1!VMware1!"
+$cli_password = Read-Host "Enter Edge cli password"
+$root_password = Read-Host "Enter Edge root password"
+
+$replace_edge.node_deployment_info.deployment_config.node_user_settings | Add-Member -Type NoteProperty -Name 'root_password' -Value $root_password
+$replace_edge.node_deployment_info.deployment_config.node_user_settings | Add-Member -Type NoteProperty -Name 'cli_password' -Value $cli_password
 
 
 #Now we convert the $replace_edge powershell object to json, so it can be used to create the replacement edge
