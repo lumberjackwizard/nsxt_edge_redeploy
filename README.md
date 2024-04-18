@@ -1,6 +1,6 @@
 nsxt_edge_redeploy v1.0
 
-This is a powershell script (created using Powershell 7.3) intended to ease the burden of redeploying NSX-T Edge VMs. The existing process requires performing a GET of the target Edge data, making modifications, then pushing that back out via a seperate POST injection. This script allows you to not have to worry about using Postman or any other direct method of API interactions; just populate the required data when prompted and everything will be handled. 
+This is a powershell script (created using Powershell 7.3 and leveraging PowerCLI 12+) intended to ease the burden of redeploying NSX-T Edge VMs. The existing process requires performing a GET of the target Edge data, making modifications, then pushing that back out via a seperate POST injection. This script allows you to not have to worry about using Postman or any other direct method of API interactions; just populate the required data when prompted and everything will be handled. 
 
 For v1.0, this script is intended only to redeploy an existing autodeployed NSX-T Edge VM (i.e., an Edge node created in NSX-T, resulting in the automatic deployment of the NSX-T Edge OVA). In this scenario, you don't need to do anything to the existing NSX-T Edge VM; it will be spun down and replaced automatically. 
 
