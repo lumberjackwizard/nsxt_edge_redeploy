@@ -4,9 +4,6 @@ This is a powershell script (created using Powershell 7.3) intended to ease the 
 
 For v1.0, this script is intended only to redeploy an existing autodeployed NSX-T Edge VM (i.e., an Edge node created in NSX-T, resulting in the automatic deployment of the NSX-T Edge OVA). In this scenario, you don't need to do anything to the existing NSX-T Edge VM; it will be spun down and replaced automatically. 
 
-Replacing of either an NSX-T Edge VM that was manually deployed or a physical Edge with a new Edge VM has not been tested (although, as long as the Edge VM/physical server is powered off first, this should work as well.)
-
-
 
 
 What you'll need:
