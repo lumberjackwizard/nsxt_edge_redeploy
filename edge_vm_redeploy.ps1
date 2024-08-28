@@ -10,8 +10,6 @@ $Url = 'https://'+$nsxmgr+'/api/v1/transport-nodes/'+$edge_uuid
 $replace_edge = Invoke-RestMethod -Uri $Url -Credential $Cred -SkipCertificateCheck -Authentication Basic
 
 
-Write-Host $replace_edge
-
 #the original edge node's cli password and root password are not gathered as part of the previous request, 
 #and must be configured for the replacement edge
 $cli_password = Read-Host "Enter Edge cli password"
